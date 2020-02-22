@@ -52,6 +52,7 @@ const SinglePost = props => {
                         <Input type="textarea" value={commentForm.comment} onChange={inputChangeHandler} name="comment" id="comment" placeholder="Your comment" />
                     </FormGroup>
                     <Button type='submit'>Send</Button>
+                    <Button className='ml-3' type='button' color='danger' onClick={() => toggleForm(false)}>Cancel</Button>
                 </Form>
             )}
 
@@ -62,7 +63,11 @@ const SinglePost = props => {
                     <ListGroupItem className="justify-content-between" key={comment.comment_id}>
                         <h5>Author: {comment.author}</h5>
                         <span>Comment: {comment.comment}</span>
-                        <Button onClick={() => props.deleteComment(comment.comment_id, props.match.params.id)} className='ml-3' color='danger'>delete</Button>
+                        <Button
+                            onClick={() => props.deleteComment(comment.comment_id, props.match.params.id)}
+                            className='ml-3' color='danger'>
+                            delete
+                        </Button>
                     </ListGroupItem>
                 ))}
             </ListGroup>
