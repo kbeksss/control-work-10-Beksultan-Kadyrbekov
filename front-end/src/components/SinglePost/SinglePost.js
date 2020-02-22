@@ -29,7 +29,7 @@ const SinglePost = props => {
         // eslint-disable-next-line
     }, []);
     return (
-        <Container className='mt-5'>
+        <Container className='mt-5 py-4'>
             <Button color='primary' tag={NavLink} to='/'>All News</Button>
             {props.singlePost && (
                 <div className='mt-3'>
@@ -51,7 +51,7 @@ const SinglePost = props => {
                         <Label for="comment">Comment</Label>
                         <Input type="textarea" value={commentForm.comment} onChange={inputChangeHandler} name="comment" id="comment" placeholder="Your comment" />
                     </FormGroup>
-                    <Button type='submit'>Send</Button>
+                    <Button color='info' type='submit'>Send</Button>
                     <Button className='ml-3' type='button' color='danger' onClick={() => toggleForm(false)}>Cancel</Button>
                 </Form>
             )}
