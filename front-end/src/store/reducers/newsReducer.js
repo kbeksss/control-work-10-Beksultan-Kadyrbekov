@@ -13,7 +13,6 @@ const newsReducer = (state = initialState, action) => {
                 news: action.news.reverse()
             };
         case FETCH_POST_SUCCESS:
-            console.log(action.post);
             return {
                 ...state,
                 post: action.post[0]
