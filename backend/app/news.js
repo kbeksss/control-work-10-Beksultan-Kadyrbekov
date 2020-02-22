@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
     const news = await mysqlDatabase.getConnection().query('SELECT * FROM `news_posts`');
     res.send(news);
 });
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     console.log(req.body);
     const news_obj = req.body;
 
