@@ -18,11 +18,11 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 router.get('/', async (req, res) => {
-    const news = await mysqlDatabase.getConnection().query('SELECT * FROM `news_posts`');
+    const news = await mysqlDatabase.getConnection().query('SELECT * FROM `news_data`');
     res.send(news);
 });
+
 router.post('/', upload.single('image'), async (req, res) => {
-    console.log(req.body);
     const news_obj = req.body;
 
     if(req.file){
@@ -33,12 +33,17 @@ router.post('/', upload.single('image'), async (req, res) => {
         return res.send("Missing required keys of title or text")
     } else {
         await mysqlDatabase.getConnection().query(
-            'INSERT INTO `news_posts` (`title`, `text`, `image`) VALUES ' +
+            'INSERT INTO `news_data` (`title`, `text`, `image`) VALUES ' +
             '(?, ?, ?)',
             [news_obj.title, news_obj.text, news_obj.image]
         );
-        res.send(news_obj);
+        res.send('new file added');
     }
+});
+
+router.get('/:id', async (req, res) => {
+    const news_single = await mysqlDatabase.getConnection().query('SELECT * FROM `news_data` WHERE `id` = ?', req.params.id);
+    res.send(news_single);
 });
 
 module.exports = router;
