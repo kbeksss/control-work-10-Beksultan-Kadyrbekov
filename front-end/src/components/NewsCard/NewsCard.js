@@ -11,6 +11,7 @@ const NewsCard = props => {
                 <CardTitle>{props.title}</CardTitle>
                 <CardSubtitle className='text-secondary'>{moment(props.datetime).format('L')}</CardSubtitle>
                 <Button onClick={props.onClick} color='primary'>Read Full Post</Button>
+                <Button className='ml-3' onClick={props.remove} color='danger'>Delete Post</Button>
             </CardBody>
         </Card>
 

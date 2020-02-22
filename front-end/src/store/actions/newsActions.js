@@ -28,3 +28,15 @@ export const fetchPost = id => {
         }
     }
 };
+
+export const deletePost = id => {
+    return async dispatch => {
+        try {
+            await axiosMyNews.delete('/news/' + id);
+            const response = await axiosMyNews.get('/news');
+            dispatch(fetchAllNewsSuccess(response.data));
+        } catch(e) {
+            console.error(e);
+        }
+    }
+};

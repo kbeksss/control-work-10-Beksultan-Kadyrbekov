@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import axiosMyNews from "../../axiosMyNews";
+import {NavLink} from "react-router-dom";
 const INITIAL_FORM = {
     title: '',
     text: '',
@@ -37,6 +38,7 @@ const NewPostForm = props => {
     };
     return (
         <Container className='mt-5'>
+            <Button tag={NavLink} to='/'>All News</Button>
             <Form onSubmit={formSubmit}>
                 <FormGroup>
                     <Label for="title">Title</Label>

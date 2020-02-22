@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import NewsCard from "../components/NewsCard/NewsCard";
 import {Button, Container, Row} from "reactstrap";
-import {fetchAllNews} from "../store/actions/newsActions";
+import {deletePost, fetchAllNews} from "../store/actions/newsActions";
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 
@@ -13,6 +13,7 @@ const Home = props => {
     const openSingle = id => {
         props.history.push('/post/' + id);
     };
+
     return (
         <Container className='mt-5 py-3'>
             <Row className='justify-content-between'>
@@ -26,6 +27,7 @@ const Home = props => {
                     image={news.image}
                     title={news.title}
                     datetime={news.datetime}
+                    remove={() => props.deletePost(news.id)}
                 />
             ))}
         </Container>
@@ -37,6 +39,7 @@ const mapStateToProps = state => ({
     allNews: state.news.news,
 });
 const mapDispatchToProps = dispatch => ({
-    fetchAllNews: () => dispatch(fetchAllNews())
+    fetchAllNews: () => dispatch(fetchAllNews()),
+    deletePost: (id) => dispatch(deletePost(id))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
