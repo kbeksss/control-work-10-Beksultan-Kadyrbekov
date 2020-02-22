@@ -10,3 +10,17 @@ export const fetchComments = id => {
         dispatch(fetchCommentsSuccess(result.data));
     }
 };
+export const deleteComment = (id, postId) => {
+    return async dispatch => {
+        await axiosMyNews.delete('/comments/' + id);
+        const result = await axiosMyNews.get('/comments?news_id=' + postId);
+        dispatch(fetchCommentsSuccess(result.data));
+    }
+};
+export const postComment = (comment, postId) => {
+    return async dispatch => {
+        await axiosMyNews.post('/comments', comment);
+        const result = await axiosMyNews.get('/comments?news_id=' + postId);
+        dispatch(fetchCommentsSuccess(result.data));
+    }
+};

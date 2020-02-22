@@ -21,7 +21,6 @@ export const fetchPost = id => {
     return async dispatch => {
         try {
             const response = await axiosMyNews.get('/news/' + id);
-            console.log(response.data[0]);
             dispatch(fetchPostSuccess(response.data));
         } catch(e) {
             console.error(e);
