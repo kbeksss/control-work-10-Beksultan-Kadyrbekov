@@ -46,4 +46,14 @@ router.get('/:id', async (req, res) => {
     res.send(news_single);
 });
 
+router.delete('/:id', async (req, res) => {
+    const news_single = await mysqlDatabase.getConnection().query('DELETE FROM `news_data` WHERE `id` = ?', req.params.id);
+
+    if(news_single.affectedRows){
+        res.send('News was deleted successfully')
+    } else{
+        res.send('NO news found');
+    }
+});
+
 module.exports = router;
