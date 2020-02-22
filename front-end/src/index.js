@@ -8,6 +8,8 @@ import thunkMiddleware from 'redux-thunk';
 import newsReducer from "./store/reducers/newsReducer";
 import commentsReducer from "./store/reducers/commentsReducer";
 import {BrowserRouter} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const rootReducer = combineReducers({
     news: newsReducer,
