@@ -53,7 +53,7 @@ router.delete('/:id', async (req, res) => {
         res.send('News was deleted successfully')
     } else{
         res.send('NO news found');
-    }
+}
 });
 
 module.exports = router;
