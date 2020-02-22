@@ -1,6 +1,7 @@
 import React from 'react';
-import {Button, Card, CardBody, CardSubtitle, CardText, CardTitle} from "reactstrap";
+import {Button, Card, CardBody, CardSubtitle, CardTitle} from "reactstrap";
 import NewsThumbnail from "../NewsThumbnail/NewsThumbnail";
+import moment from 'moment';
 
 const NewsCard = props => {
     return (
@@ -8,8 +9,8 @@ const NewsCard = props => {
             <NewsThumbnail image={props.image}/>
             <CardBody>
                 <CardTitle>{props.title}</CardTitle>
-                <CardSubtitle className='text-secondary'>{props.datetime}</CardSubtitle>
-                <Button>Read Full Post</Button>
+                <CardSubtitle className='text-secondary'>{moment(props.datetime).format('L')}</CardSubtitle>
+                <Button onClick={props.onClick} color='primary'>Read Full Post</Button>
             </CardBody>
         </Card>
 

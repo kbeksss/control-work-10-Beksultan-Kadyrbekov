@@ -19,12 +19,15 @@ const upload = multer({storage});
 
 router.get('/', async (req, res) => {
     const news = await mysqlDatabase.getConnection().query('SELECT * FROM `news_data`');
+    if(news){
+        const newNews = news.map(n => ({id: n.id, title: n.title, image: n.image, datetime: n.datetime}));
+        return res.send(newNews);
+    }
     res.send(news);
 });
 
 router.post('/', upload.single('image'), async (req, res) => {
     const news_obj = req.body;
-
     if(req.file){
         news_obj.image = req.file.filename;
     }
